@@ -1,0 +1,40 @@
+{
+  "name": "portfolio-daniel-bosquet",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://x-access-token:ghs_AgZaan2ENj0RkpyJeK76IOyi7UFkI31NnCl9@github.com/danibosquet/Portfolio-Daniel-Bosquet.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/danibosquet/Portfolio-Daniel-Bosquet/issues"
+  },
+  "homepage": "https://github.com/danibosquet/Portfolio-Daniel-Bosquet#readme",
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.23",
+    "lucide-react": "^1.9.0",
+    "next": "^16.2.4",
+    "react": "^19.2.5",
+    "react-dom": "^19.2.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.2.4",
+    "@types/node": "25.6.0",
+    "@types/react": "19.2.14",
+    "autoprefixer": "^10.5.0",
+    "postcss": "^8.5.10",
+    "tailwindcss": "^4.2.4",
+    "typescript": "6.0.3"
+  }
+}
