@@ -76,12 +76,15 @@ window.addEventListener('load', () => {
 ========================================= */
 function initLenisAndGSAP() {
     lenis = new Lenis({
-        duration: 1.2,
+        duration: 1.4,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
+        wheelMultiplier: 1.1,
         smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
     });
 
     lenis.on('scroll', (e) => {
@@ -549,105 +552,107 @@ function initAnimations() {
         return () => { /* cleanup */ };
     });
 
-    // 01. Hero Cinematic Sequence
+    // 01. Hero Editorial Studio — Cinematic Entrance & Parallax
     const tlHero = gsap.timeline({ delay: 0.1 });
-    
-    // Typewriter Pre-processing
-    const tagline = document.querySelector('.hero-tagline');
-    if (tagline) {
-        const text = tagline.innerText;
-        tagline.innerHTML = text.split('').map(char => `<span class="t-char" style="opacity:0">${char === ' ' ? '&nbsp;' : char}</span>`).join('');
+
+    // Initial States
+    gsap.set('.studio-glow', { opacity: 0, scale: 0.8 });
+    gsap.set('.name-part', { opacity: 0, y: 50 });
+    gsap.set('.hero-studio-subject', { opacity: 0, y: 30, scale: 0.95 });
+    gsap.set('.studio-meta', { opacity: 0 });
+
+    // Sequence
+    tlHero.to('.studio-glow', { opacity: 1, scale: 1, duration: 2.5, ease: "power2.out" }, 0)
+          .to('.name-part', {
+              opacity: 0.34,
+              y: 0,
+              duration: 2,
+              stagger: 0.2,
+              ease: "expo.out"
+          }, 0.3)
+          .to('.hero-studio-subject', {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 2.5,
+              ease: "expo.out"
+          }, 0.5);
+
+    // MOUSE PARALLAX EFFECT
+    const heroSection = document.querySelector('.hero-editorial-studio');
+    if (heroSection) {
+        heroSection.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const xPos = (clientX / window.innerWidth - 0.5) * 2;
+            const yPos = (clientY / window.innerHeight - 0.5) * 2;
+
+            // Subject moves slightly
+            gsap.to('.hero-studio-subject', {
+                x: xPos * 25,
+                y: yPos * 15,
+                duration: 1.5,
+                ease: "power2.out"
+            });
+
+            // Name moves in opposite direction
+            gsap.to('.hero-studio-name', {
+                x: xPos * -35,
+                y: yPos * -20,
+                duration: 1.8,
+                ease: "power2.out"
+            });
+
+            // Glow follows mouse slightly
+            gsap.to('.studio-glow', {
+                x: xPos * 40,
+                y: yPos * 20,
+                duration: 2,
+                ease: "power2.out"
+            });
+        });
     }
 
-    // LEDs & Intertwined Name Reveal
-    tlHero.set('.hero-led', { opacity: 0.05, height: "0vh" })
-          .set('.gs-reveal', { opacity: 0, filter: "blur(15px)", scale: 1.05 })
-          .set('.name-daniel', { x: -50 })
-          .set('.name-bosquet', { x: 50 })
-          .to('.hero-led', { opacity: 0.8, duration: 0.04 })
-          .to('.hero-led', { opacity: 0.1, duration: 0.03 })
-          .to('.hero-led', { opacity: 0.9, duration: 0.06 })
-          .to('.gs-reveal', { 
-              opacity: 1, 
-              filter: "blur(0px)", 
-              scale: 1, 
-              x: 0,
-              duration: 2.2, 
-              stagger: 0.1, 
-              ease: "expo.out" 
-          }, "<")
-          .to('.hero-led', { opacity: 1, height: "35vh", duration: 2, ease: "expo.out" }, "<")
-          // Typewriter Animation Step
-          .to('.t-char', { 
-              opacity: 1, 
-              duration: 0.01, 
-              stagger: 0.04, 
-              ease: "none",
-              onStart: () => tagline.classList.add('is-typing'),
-              onComplete: () => tagline.classList.remove('is-typing')
-          }, "-=1.4")
-          .fromTo('.gs-fade-hero', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 1.2, stagger: 0.15, ease: "power2.out" }, "-=0.8");
-
-
-    // 02. Hero to Page Transition (Black -> White)
+    // 02. Scroll Transition: Studio Grey → White
     gsap.to('.hero-pinned', {
         backgroundColor: '#ffffff',
         scrollTrigger: {
             trigger: '.hero-pinned',
             start: "top top",
-            end: "bottom center",
-            scrub: true,
-        }
-    });
-
-    // FOOLPROOF LED PERSISTENCE: Reactivates on Scroll Back
-    ScrollTrigger.create({
-        trigger: '.hero-pinned',
-        start: "top top",
-        end: "60% center",
-        onLeave: () => {
-            gsap.to('.hero-led', { opacity: 0, height: "0vh", duration: 0.8, ease: "power2.inOut" });
-        },
-        onEnterBack: () => {
-            gsap.to('.hero-led', { opacity: 1, height: "35vh", duration: 1, ease: "expo.out" });
-        },
-        onLeaveBack: () => {
-            // Keep them visible at the very top
-            gsap.to('.hero-led', { opacity: 1, height: "35vh", duration: 1 });
-        }
-    });
-
-    gsap.to('.hero-text-wrapper', {
-        color: '#0a0a0b',
-        y: -200,
-        scrollTrigger: {
-            trigger: '.hero-pinned',
-            start: "top top",
-            end: "bottom center",
-            scrub: true,
-        }
-    });
-
-    // Sub-wrapper and tagline colors (fade to black)
-    gsap.to(['.hero-tagline', '.hero-sub'], {
-        color: '#666666',
-        scrollTrigger: {
-            trigger: '.hero-pinned',
-            start: "center center",
             end: "bottom top",
             scrub: true,
         }
     });
 
-    // LEDs Fade out on scroll
-    gsap.to('.hero-led', {
-        opacity: 0,
-        scaleY: 0.5,
+    // 03. Name text gently rises & fades on scroll
+    gsap.to('.hero-ed-name', {
+        y: -100, opacity: 0.06,
         scrollTrigger: {
             trigger: '.hero-pinned',
             start: "top top",
-            end: "30% top",
-            scrub: true,
+            end: "55% top",
+            scrub: 1.2,
+        }
+    });
+
+    // 04. Photo subtle parallax (no y conflict with entrance)
+    gsap.to('.hero-ed-photo', {
+        y: -60,
+        scrollTrigger: {
+            trigger: '.hero-pinned',
+            start: "5% top",
+            end: "bottom top",
+            scrub: 1,
+        }
+    });
+
+    // 05. Meta + CTA fade out on scroll
+    gsap.to(['.hero-ed-meta', '.hero-ed-cta'], {
+        opacity: 0, y: -20,
+        scrollTrigger: {
+            trigger: '.hero-pinned',
+            start: "8% top",
+            end: "35% top",
+            scrub: 1,
         }
     });
 

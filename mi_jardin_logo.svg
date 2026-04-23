@@ -1,0 +1,255 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="48%" r="55%">
+      <stop offset="0%" stop-color="#fafaf5"/>
+      <stop offset="100%" stop-color="#eeeeea"/>
+    </radialGradient>
+    <radialGradient id="bulbGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff8c0" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#fff8c0" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softglow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="400" fill="url(#bgGrad)" rx="16"/>
+
+  <!-- === VINE WREATH === -->
+  <!-- Left vine arc -->
+  <path d="M 300 28 C 205 32, 128 82, 105 185 C 92 255, 118 325, 170 362"
+        stroke="#5a8a35" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+  <!-- Right vine arc -->
+  <path d="M 300 28 C 395 32, 472 82, 495 185 C 508 255, 482 325, 430 362"
+        stroke="#5a8a35" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+  <!-- Leaves on left vine -->
+  <ellipse cx="224" cy="55" rx="9" ry="15" fill="#4a8a35" transform="rotate(-38 224 55)"/>
+  <ellipse cx="172" cy="85" rx="9" ry="14" fill="#5d9e42" transform="rotate(-58 172 85)"/>
+  <ellipse cx="132" cy="135" rx="9" ry="15" fill="#4a8a35" transform="rotate(-78 132 135)"/>
+  <ellipse cx="112" cy="195" rx="8" ry="14" fill="#5d9e42" transform="rotate(-95 112 195)"/>
+  <ellipse cx="118" cy="258" rx="9" ry="15" fill="#4a8a35" transform="rotate(-118 118 258)"/>
+  <ellipse cx="143" cy="318" rx="8" ry="13" fill="#5d9e42" transform="rotate(-140 143 318)"/>
+
+  <!-- Leaves on right vine -->
+  <ellipse cx="376" cy="55" rx="9" ry="15" fill="#4a8a35" transform="rotate(38 376 55)"/>
+  <ellipse cx="428" cy="85" rx="9" ry="14" fill="#5d9e42" transform="rotate(58 428 85)"/>
+  <ellipse cx="468" cy="135" rx="9" ry="15" fill="#4a8a35" transform="rotate(78 468 135)"/>
+  <ellipse cx="488" cy="195" rx="8" ry="14" fill="#5d9e42" transform="rotate(95 488 195)"/>
+  <ellipse cx="482" cy="258" rx="9" ry="15" fill="#4a8a35" transform="rotate(118 482 258)"/>
+  <ellipse cx="457" cy="318" rx="8" ry="13" fill="#5d9e42" transform="rotate(140 457 318)"/>
+
+  <!-- Top center leaves -->
+  <ellipse cx="279" cy="26" rx="7" ry="12" fill="#4a8a35" transform="rotate(-18 279 26)"/>
+  <ellipse cx="300" cy="23" rx="7" ry="12" fill="#5d9e42" transform="rotate(0 300 23)"/>
+  <ellipse cx="321" cy="26" rx="7" ry="12" fill="#4a8a35" transform="rotate(18 321 26)"/>
+
+  <!-- === TREE === -->
+  <!-- Soil mound -->
+  <ellipse cx="300" cy="328" rx="52" ry="10" fill="#a07848" opacity="0.55"/>
+
+  <!-- Roots -->
+  <path d="M 284 323 Q 262 332 246 328" stroke="#7a5c30" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+  <path d="M 299 327 Q 295 340 290 347" stroke="#7a5c30" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+  <path d="M 316 323 Q 338 332 354 328" stroke="#7a5c30" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+  <!-- Trunk -->
+  <path d="M 288 325 Q 284 288 287 258 Q 290 222 300 192 Q 310 222 313 258 Q 316 288 312 325 Z"
+        fill="#8b6038"/>
+  <!-- Trunk detail lines -->
+  <path d="M 292 285 Q 300 280 308 285" stroke="#6b4828" stroke-width="1.4" fill="none"/>
+  <path d="M 291 308 Q 300 303 309 308" stroke="#6b4828" stroke-width="1.4" fill="none"/>
+
+  <!-- Branches -->
+  <path d="M 294 248 Q 258 228 232 210" stroke="#7a5c30" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+  <path d="M 296 236 Q 266 206 255 178" stroke="#7a5c30" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M 306 248 Q 342 228 368 210" stroke="#7a5c30" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+  <path d="M 304 236 Q 334 206 345 178" stroke="#7a5c30" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <path d="M 300 226 Q 300 195 300 170" stroke="#7a5c30" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+  <path d="M 293 258 Q 252 252 232 248" stroke="#7a5c30" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M 307 258 Q 348 252 368 248" stroke="#7a5c30" stroke-width="2" fill="none" stroke-linecap="round"/>
+
+  <!-- Foliage clusters (back to front) -->
+  <circle cx="300" cy="148" r="32" fill="#266026"/>
+  <circle cx="258" cy="175" r="26" fill="#2e722e"/>
+  <circle cx="342" cy="175" r="26" fill="#2e722e"/>
+  <circle cx="236" cy="210" r="22" fill="#38823a"/>
+  <circle cx="364" cy="210" r="22" fill="#38823a"/>
+  <circle cx="274" cy="162" r="24" fill="#359838"/>
+  <circle cx="326" cy="162" r="24" fill="#359838"/>
+  <circle cx="300" cy="138" r="28" fill="#3ea83e"/>
+  <circle cx="248" cy="196" r="18" fill="#35903a"/>
+  <circle cx="352" cy="196" r="18" fill="#35903a"/>
+  <circle cx="233" cy="235" r="17" fill="#3ea840"/>
+  <circle cx="367" cy="235" r="17" fill="#3ea840"/>
+
+  <!-- === LIGHTBULBS === -->
+  <!-- Bulb center-top (with glow) -->
+  <g transform="translate(300 110)">
+    <circle r="18" fill="url(#bulbGlow)" filter="url(#softglow)"/>
+    <ellipse rx="11" ry="13" fill="#fffde5" stroke="#c8a800" stroke-width="1.5"/>
+    <path d="M -3 13 L -3 9 Q -4 7 0 7 Q 4 7 3 9 L 3 13 Z" fill="#b0b0b0"/>
+    <line x1="-1.5" y1="13" x2="-1.5" y2="17" stroke="#b0b0b0" stroke-width="1.8"/>
+    <line x1="1.5" y1="13" x2="1.5" y2="17" stroke="#b0b0b0" stroke-width="1.8"/>
+    <!-- Filament -->
+    <path d="M -4 0 Q 0 4 4 0" stroke="#c8a800" stroke-width="1.2" fill="none"/>
+    <!-- Shine lines -->
+    <line x1="14" y1="-14" x2="18" y2="-18" stroke="#ffd700" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-14" y1="-14" x2="-18" y2="-18" stroke="#ffd700" stroke-width="2" stroke-linecap="round"/>
+    <line x1="0" y1="-18" x2="0" y2="-23" stroke="#ffd700" stroke-width="2" stroke-linecap="round"/>
+  </g>
+
+  <!-- Bulb left -->
+  <g transform="translate(244 175)">
+    <circle r="13" fill="url(#bulbGlow)" filter="url(#softglow)" opacity="0.8"/>
+    <ellipse rx="9" ry="11" fill="#fffde5" stroke="#c8a800" stroke-width="1.4"/>
+    <path d="M -2.5 11 L -2.5 8 Q -3 6.5 0 6.5 Q 3 6.5 2.5 8 L 2.5 11 Z" fill="#b0b0b0"/>
+  </g>
+
+  <!-- Bulb right -->
+  <g transform="translate(356 175)">
+    <circle r="13" fill="url(#bulbGlow)" filter="url(#softglow)" opacity="0.8"/>
+    <ellipse rx="9" ry="11" fill="#fffde5" stroke="#c8a800" stroke-width="1.4"/>
+    <path d="M -2.5 11 L -2.5 8 Q -3 6.5 0 6.5 Q 3 6.5 2.5 8 L 2.5 11 Z" fill="#b0b0b0"/>
+  </g>
+
+  <!-- Bulb far left -->
+  <g transform="translate(226 225)">
+    <circle r="11" fill="url(#bulbGlow)" filter="url(#softglow)" opacity="0.7"/>
+    <ellipse rx="8" ry="9.5" fill="#fffde5" stroke="#c8a800" stroke-width="1.3"/>
+    <path d="M -2 9.5 L -2 7 Q -2.5 5.5 0 5.5 Q 2.5 5.5 2 7 L 2 9.5 Z" fill="#b0b0b0"/>
+  </g>
+
+  <!-- Bulb far right -->
+  <g transform="translate(374 225)">
+    <circle r="11" fill="url(#bulbGlow)" filter="url(#softglow)" opacity="0.7"/>
+    <ellipse rx="8" ry="9.5" fill="#fffde5" stroke="#c8a800" stroke-width="1.3"/>
+    <path d="M -2 9.5 L -2 7 Q -2.5 5.5 0 5.5 Q 2.5 5.5 2 7 L 2 9.5 Z" fill="#b0b0b0"/>
+  </g>
+
+  <!-- === FLOWERS === -->
+  <!-- Pink flower left-mid -->
+  <g transform="translate(162 252)">
+    <circle cx="-11" cy="0" r="7.5" fill="#ff9dc5"/>
+    <circle cx="11" cy="0" r="7.5" fill="#ff9dc5"/>
+    <circle cx="0" cy="-11" r="7.5" fill="#ff9dc5"/>
+    <circle cx="0" cy="11" r="7.5" fill="#ff9dc5"/>
+    <circle cx="-8" cy="-8" r="7" fill="#ffb8d5"/>
+    <circle cx="8" cy="-8" r="7" fill="#ffb8d5"/>
+    <circle r="11" fill="#e91e8c"/>
+    <circle r="4.5" fill="#ffd700"/>
+  </g>
+
+  <!-- Blue flower upper right -->
+  <g transform="translate(438 188)">
+    <circle cx="-10" cy="0" r="7" fill="#7dd9f6"/>
+    <circle cx="10" cy="0" r="7" fill="#7dd9f6"/>
+    <circle cx="0" cy="-10" r="7" fill="#7dd9f6"/>
+    <circle cx="0" cy="10" r="7" fill="#7dd9f6"/>
+    <circle r="10" fill="#29b6f6"/>
+    <circle r="4" fill="#ffd700"/>
+  </g>
+
+  <!-- Orange flower right-low -->
+  <g transform="translate(445 252)">
+    <circle cx="-10" cy="0" r="7" fill="#ff9568"/>
+    <circle cx="10" cy="0" r="7" fill="#ff9568"/>
+    <circle cx="0" cy="-10" r="7" fill="#ff9568"/>
+    <circle cx="0" cy="10" r="7" fill="#ff9568"/>
+    <circle r="10" fill="#ff5722"/>
+    <circle r="4" fill="#ffd700"/>
+  </g>
+
+  <!-- Small pink flower bottom-left -->
+  <g transform="translate(248 342)">
+    <circle cx="-8" cy="0" r="6" fill="#ff9dc5"/>
+    <circle cx="8" cy="0" r="6" fill="#ff9dc5"/>
+    <circle cx="0" cy="-8" r="6" fill="#ff9dc5"/>
+    <circle cx="0" cy="8" r="6" fill="#ff9dc5"/>
+    <circle r="8" fill="#e91e8c"/>
+    <circle r="3.5" fill="#ffd700"/>
+  </g>
+
+  <!-- Small blue flower bottom-right -->
+  <g transform="translate(352 344)">
+    <circle cx="-8" cy="0" r="6" fill="#7dd9f6"/>
+    <circle cx="8" cy="0" r="6" fill="#7dd9f6"/>
+    <circle cx="0" cy="-8" r="6" fill="#7dd9f6"/>
+    <circle cx="0" cy="8" r="6" fill="#7dd9f6"/>
+    <circle r="8" fill="#29b6f6"/>
+    <circle r="3.5" fill="#ffd700"/>
+  </g>
+
+  <!-- Pink small upper-left area -->
+  <g transform="translate(148 185)">
+    <circle cx="-7" cy="0" r="5.5" fill="#ff9dc5"/>
+    <circle cx="7" cy="0" r="5.5" fill="#ff9dc5"/>
+    <circle cx="0" cy="-7" r="5.5" fill="#ff9dc5"/>
+    <circle cx="0" cy="7" r="5.5" fill="#ff9dc5"/>
+    <circle r="7.5" fill="#e91e8c"/>
+    <circle r="3" fill="#ffd700"/>
+  </g>
+
+  <!-- === COLORED DOTS === -->
+  <circle cx="192" cy="128" r="4" fill="#29b6f6"/>
+  <circle cx="410" cy="125" r="4" fill="#66bb6a"/>
+  <circle cx="153" cy="298" r="3.5" fill="#ff4477"/>
+  <circle cx="448" cy="298" r="3.5" fill="#ff9800"/>
+  <circle cx="272" cy="42" r="3" fill="#ff69b4"/>
+  <circle cx="328" cy="40" r="3" fill="#29b6f6"/>
+  <circle cx="217" cy="362" r="3.5" fill="#66bb6a"/>
+  <circle cx="382" cy="362" r="3.5" fill="#ff4477"/>
+  <circle cx="300" cy="370" r="3" fill="#ff9800"/>
+  <circle cx="122" cy="168" r="3.2" fill="#ffd700"/>
+  <circle cx="478" cy="170" r="3.2" fill="#ff69b4"/>
+  <circle cx="135" cy="230" r="2.8" fill="#66bb6a"/>
+  <circle cx="465" cy="232" r="2.8" fill="#29b6f6"/>
+
+  <!-- === TEXT === -->
+  <!-- MI JARDÍN -->
+  <text x="300" y="282"
+        text-anchor="middle"
+        font-family="'Arial Black', Impact, 'Helvetica Neue', sans-serif"
+        font-weight="900"
+        font-size="44"
+        fill="#2d5a18"
+        letter-spacing="3">MI JARDÍN</text>
+
+  <!-- DE LAS IDEAS — curved on arc -->
+  <defs>
+    <path id="textArc" d="M 155 318 Q 300 348 445 318"/>
+  </defs>
+  <text font-family="'Georgia', 'Times New Roman', serif"
+        font-weight="700"
+        font-size="22"
+        fill="#1a4d8c"
+        letter-spacing="4">
+    <textPath href="#textArc" startOffset="50%" text-anchor="middle">DE LAS IDEAS</textPath>
+  </text>
+
+  <!-- === WATERING CAN === -->
+  <g transform="translate(188 300)">
+    <!-- Body -->
+    <rect x="-14" y="-9" width="22" height="15" rx="3.5" fill="#7a9868"/>
+    <!-- Spout tube -->
+    <path d="M 8 -5 L 20 -8 L 22 -2 L 8 2 Z" fill="#7a9868"/>
+    <!-- Spout holes -->
+    <circle cx="21" cy="-5.5" r="1.2" fill="#5a7848"/>
+    <circle cx="23" cy="-3.5" r="1.2" fill="#5a7848"/>
+    <circle cx="22" cy="-1.5" r="1.2" fill="#5a7848"/>
+    <!-- Handle arc -->
+    <path d="M -8 -9 Q -22 -9 -22 -18 Q -22 -26 -12 -26 Q -2 -26 -2 -18 Q -2 -12 2 -9"
+          fill="none" stroke="#7a9868" stroke-width="2.2" stroke-linecap="round"/>
+    <!-- Water drops from spout -->
+    <ellipse cx="24" cy="3" rx="1.5" ry="2" fill="#7dd9f6" opacity="0.8"/>
+    <ellipse cx="27" cy="5" rx="1.2" ry="1.8" fill="#7dd9f6" opacity="0.6"/>
+  </g>
+
+  <!-- === HEART DECORATION === -->
+  <path d="M 415 298 C 415 295.5, 417.5 294, 419 295.5 C 420.5 294, 423 295.5, 423 298 C 423 301, 419 305, 419 305 C 419 305, 415 301, 415 298 Z"
+        fill="#ff4488"/>
+  <path d="M 422 295 C 422 292.5, 424.5 291, 426 292.5 C 427.5 291, 430 292.5, 430 295 C 430 298, 426 302, 426 302 C 426 302, 422 298, 422 295 Z"
+        fill="#ff4488" opacity="0.65"/>
+</svg>
