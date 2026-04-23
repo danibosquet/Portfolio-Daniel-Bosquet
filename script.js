@@ -737,6 +737,7 @@ function initAnimations() {
                 start: "top top",
                 end: () => `+=${getScrollDistance()}`,
                 pin: true,
+                anticipatePin: 1, // Fix jumps and lag
                 scrub: 1,
                 invalidateOnRefresh: true,
             }

@@ -593,17 +593,11 @@
     <!-- MODALES DE PROYECTO & CHATBOT -->
     <div id="project-modal" class="modal-overlay" aria-hidden="true">
         <div class="modal-container">
-            <!-- Mobile Header Navigation (Sticky on mobile) -->
-            <div class="modal-mobile-header">
-                <span class="mobile-nav-title" id="modal-mobile-title">Detalles del Proyecto</span>
-                <button class="modal-mobile-close" onclick="closeProjectModal()">
-                    <i data-lucide="x"></i>
-                </button>
-            </div>
-
+            <!-- Persistent Floating Close Button -->
             <button class="modal-close" onclick="closeProjectModal()" aria-label="Cerrar proyecto">
                 <i data-lucide="x"></i>
             </button>
+
             <div class="modal-body-wrapper" id="modal-body-content" data-lenis-prevent>
                 <!-- All content (Info + Meta) injected here via JS -->
             </div>

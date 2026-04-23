@@ -693,10 +693,11 @@ body.cursor-text #cursor-ring {
 .hero-studio-subject {
     position: relative;
     z-index: 10;
-    height: 95vh; /* Larger image */
+    height: 100vh; /* Fill the whole screen to reach the bottom */
     display: flex;
-    align-items: flex-end;
-    margin-top: 5vh;
+    align-items: flex-end; /* Grounded at the bottom */
+    justify-content: center;
+    margin-top: 0;
 }
 
 .studio-img {
@@ -704,26 +705,46 @@ body.cursor-text #cursor-ring {
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 20px 80px rgba(0,0,0,0.12));
-    
-    /* Professional multi-stop fade (Bezier-like transparency) */
+    will-change: transform, opacity;
+
+    /* Professional multi-stop mask for shorter, smoother fade */
     -webkit-mask-image: linear-gradient(
         to top, 
         rgba(0,0,0,0) 0%, 
-        rgba(0,0,0,0.1) 4%,
-        rgba(0,0,0,0.4) 8%,
-        rgba(0,0,0,0.8) 15%,
-        rgba(0,0,0,1) 25%,
+        rgba(0,0,0,0.2) 2%,
+        rgba(0,0,0,0.5) 5%,
+        rgba(0,0,0,0.8) 8%,
+        rgba(0,0,0,1) 12%,
         rgba(0,0,0,1) 100%
     );
     mask-image: linear-gradient(
         to top, 
         rgba(0,0,0,0) 0%, 
-        rgba(0,0,0,0.1) 4%,
-        rgba(0,0,0,0.4) 8%,
-        rgba(0,0,0,0.8) 15%,
-        rgba(0,0,0,1) 25%,
+        rgba(0,0,0,0.2) 2%,
+        rgba(0,0,0,0.5) 5%,
+        rgba(0,0,0,0.8) 8%,
+        rgba(0,0,0,1) 12%,
         rgba(0,0,0,1) 100%
     );
+}
+
+/* Professional seamless transition overlay (shorter surface) */
+.hero-editorial-studio::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 10vh; /* Shorter surface as requested */
+    background: linear-gradient(
+        to bottom, 
+        transparent 0%, 
+        rgba(200, 199, 197, 0.4) 30%, 
+        rgba(200, 199, 197, 0.8) 60%, 
+        #ffffff 100%
+    );
+    z-index: 15;
+    pointer-events: none;
 }
 
 .studio-meta {
@@ -811,8 +832,44 @@ body.cursor-text #cursor-ring {
         font-size: 0.65rem !important;
     }
 
-    .name-part { font-size: 15vw; line-height: 1.1; }
-    .hero-studio-subject { height: 70vh; margin-top: 10vh; }
+    .hero-studio-name {
+        z-index: 20 !important; /* On top of subject */
+        top: 54vh !important;
+        left: -22vw !important; /* Shifted even more left */
+        width: 100vw !important;
+        pointer-events: none;
+        mix-blend-mode: overlay; /* Cinematic interaction with image */
+    }
+
+    .name-part {
+        font-size: 10.5vw !important; /* Slightly smaller for a more refined look */
+        line-height: 0.95 !important;
+        color: rgba(255,255,255,0.7) !important; /* Lighter color for overlay effect */
+        letter-spacing: -0.03em !important;
+        text-shadow: 0 0 20px rgba(255,255,255,0.1);
+    }
+
+    .hero-studio-subject { 
+        height: 100vh !important; 
+        width: 100% !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-end !important;
+        z-index: 10 !important;
+        overflow: hidden;
+    }
+    .studio-img { 
+        width: auto !important; 
+        height: 100% !important; 
+        max-width: none !important;
+        object-fit: contain !important;
+        transform: scale(1.1) translateY(8%);
+        transform-origin: bottom center;
+        filter: drop-shadow(0 20px 80px rgba(0,0,0,0.2));
+    }
     .meta-left, .meta-right { display: none; }
 }
 
@@ -2500,148 +2557,41 @@ body.cursor-text #cursor-ring {
         box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
     .cert-image-frame img { object-fit: contain; padding: 5px; }
-/* Spacing for smoother transitions */
-.projects-section {
-    padding-bottom: 10rem;
-}
-
-.certificates-section {
-    padding-top: 10rem;
-    padding-bottom: 10rem;
-}
-
-@media (max-width: 768px) {
-    /* Certificates Spacing on Mobile */
-    .cert-grid {
-        display: flex;
-        flex-direction: column;
-        gap: 3rem !important; /* Generous gap between certificates */
-        padding: 0 1.5rem;
-    }
+    .cert-details-centered { gap: 4rem; padding-top: 3rem; }
     
-    .cert-card {
-        margin-bottom: 1rem;
-    }
-
-    .projects-section { padding-bottom: 5rem; }
-    .certificates-section { padding-top: 5rem; padding-bottom: 5rem; }
-    /* Integrated Close Button (Glassmorphism style) */
-    #project-modal .modal-close {
-        display: flex !important;
-        position: absolute;
-        top: 1.5rem;
-        right: 1.5rem;
-        width: 44px;
-        height: 44px;
-        background: rgba(160, 160, 160, 0.15); /* Match page tone */
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: #1a1a1a;
-        border-radius: 50%;
-        z-index: 10005;
-        justify-content: center;
-        align-items: center;
-        transition: transform 0.3s ease;
-    }
-    
-    /* Horizontal Scroll Spacing for Certificates - More aggressive spacing */
-    .cert-grid {
-        display: flex !important;
-        flex-direction: row !important;
-        overflow-x: auto !important;
-        gap: 8rem !important; /* Double the space for air */
-        padding: 2rem 3rem !important; /* More side padding */
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .cert-card {
-        flex: 0 0 80% !important; /* Slightly narrower to show more gap */
-        scroll-snap-align: center;
-        margin-bottom: 0 !important;
-    }
-
-    .hero-studio-name {
-        z-index: 15 !important; /* On top of subject (10) */
-        top: 25vh !important; /* Lowered even more as requested */
-        pointer-events: none;
-    }
-
-    .name-part {
-        font-size: 14vw !important;
-        line-height: 0.95 !important;
-        color: rgba(0,0,0,0.4) !important; /* Slightly more contrast since it's on top */
-    }
-
-    .hero-studio-subject {
-        height: 65vh; /* Slightly shorter to give more room to the name above */
-        margin-top: 25vh; /* Push down to clear space for the name */
-        justify-content: center !important;
-        width: 100%;
-        left: 0;
-        right: 0;
-    }
-
-    /* Millimetrically Centered & Persistent Close Button (Universal for all modals) */
+    /* Floating X Button - Clean & Persistent */
     .modal-close {
-        display: grid !important;
-        place-items: center !important;
+        display: flex !important;
         position: fixed !important;
-        top: 1.5rem;
-        right: 1.5rem;
-        width: 48px;
-        height: 48px;
-        background: rgba(0, 0, 0, 0.5) !important; 
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        color: #ffffff !important; 
-        border-radius: 50%;
-        z-index: 100000 !important; 
-        transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        padding: 0;
-        cursor: pointer;
+        top: 1.5rem !important;
+        right: 1.5rem !important;
+        width: 48px !important;
+        height: 48px !important;
+        background: rgba(0, 0, 0, 0.6) !important;
+        backdrop-filter: blur(15px) !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        color: #fff !important;
+        border-radius: 50% !important;
+        z-index: 100000 !important; /* Above everything */
+        justify-content: center !important;
+        align-items: center !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.3) !important;
+        transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
 
-    .modal-close i, 
-    .modal-close svg {
-        width: 22px !important;
-        height: 22px !important;
-        display: block !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        pointer-events: none;
+    .modal-close i, .modal-close svg {
+        width: 20px !important;
+        height: 20px !important;
     }
 
     .modal-close:active {
         transform: scale(0.9);
-        background: rgba(0, 0, 0, 0.7) !important;
     }
 
-    .modal-mobile-header {
-        display: flex !important;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1.2rem 1.5rem;
-        background: rgba(200, 199, 197, 0.95); /* Match studio gray */
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(0,0,0,0.05);
-        position: sticky;
-        top: 0;
-        z-index: 10010;
-    }
+    .marquee-section { margin-top: -5vh !important; }
 
-    .modal-mobile-close {
-        background: none;
-        border: none;
-        color: #fff;
-        cursor: pointer;
+    #about {
+        padding-top: 4rem !important; /* Start higher */
     }
-}
-@media (max-width: 480px) {
-    #project-modal .modal-close { top: 0.8rem; right: 0.8rem; }
-    .cert-display-title { font-size: 1.6rem; }
-    .cert-hero-image { margin-bottom: 4rem; }
-    .cert-container .modal-close { top: 1rem; right: 1rem; }
 }
